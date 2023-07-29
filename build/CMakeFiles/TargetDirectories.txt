@@ -1,0 +1,3 @@
+F:/Game/Ray Tracing In One Weekend/build/CMakeFiles/Raytracing.dir
+F:/Game/Ray Tracing In One Weekend/build/CMakeFiles/edit_cache.dir
+F:/Game/Ray Tracing In One Weekend/build/CMakeFiles/rebuild_cache.dir
