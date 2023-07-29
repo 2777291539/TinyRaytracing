@@ -14,6 +14,14 @@ public:
     vec3 operator-() const { return vec3(-e[0], -e[1], -e[2]); }
     double operator[](int i) const { return e[i]; }
     double& operator[](int i) { return e[i]; }
+
+    vec3 operator*(const vec3& v) const {
+        vec3 temp;
+        temp.e[0] = e[0] * v.e[0];
+        temp.e[1] = e[1] * v.e[1];
+        temp.e[2] = e[2] * v.e[2];
+        return temp;
+    }
     
     vec3& operator+=(const vec3& v) {
 	e[0] += v.e[0];
@@ -121,4 +129,8 @@ vec3 random_in_hemisphere(const vec3& normal) {
         return in_unit_sphere;
     else
         return -in_unit_sphere;
+}
+
+vec3 reflect(const vec3& v, const vec3& n) {
+    return v - 2*dot(v,n)*n;
 }
