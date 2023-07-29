@@ -43,13 +43,21 @@ public:
 
     void write_color(std::ostream& out, int samples_per_pixel) {
         auto scale = 1.0 / samples_per_pixel;
-        auto r = scale * e[0];
-        auto g = scale * e[1];
-        auto b = scale * e[2];
+        auto r = sqrt(scale * e[0]);
+        auto g = sqrt(scale * e[1]);
+        auto b = sqrt(scale * e[2]);
 
         out << static_cast<int>(256 * clamp(r, 0.0, 0.999)) << ' '
             << static_cast<int>(256 * clamp(g, 0.0, 0.999)) << ' '
             << static_cast<int>(256 * clamp(b, 0.0, 0.999)) << '\n';
+    }
+
+    inline static vec3 random() {
+        return vec3(random_double(), random_double(), random_double());
+    }
+
+    inline static vec3 random(double min, double max) {
+        return vec3(random_double(min, max), random_double(min, max), random_double(min, max));
     }
 
 public:
@@ -90,4 +98,19 @@ inline vec3 cross(const vec3& u, const vec3& v) {
 
 inline vec3 unit_vector(vec3 v) {
     return v / v.length();
+}
+
+vec3 random_in_unit_sphere() {
+    while (true) {
+        auto p = vec3::random(-1, 1);
+        if (p.length_squared() >= 1) continue;
+        return p;
+    }
+}
+
+vec3 random_unit_vector() {
+    auto a = random_double(0, 2*pi);
+    auto z = random_double(-1, 1);
+    auto r = sqrt(1 - z*z);
+    return vec3(r*cos(a), r*sin(a), z);
 }
