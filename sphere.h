@@ -15,7 +15,7 @@ public:
     double radius;
 };
 
-bool sphere:hit(const ray& r, double t_min, double t_max, hit_record& rec) const {
+bool sphere::hit(const ray& r, double t_min, double t_max, hit_record& rec) const {
     vec3 oc = r.origin() - center;
     auto a = r.direction().length_squared();
     auto half_b = dot(oc, r.direction());
