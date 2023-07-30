@@ -1,5 +1,7 @@
 #pragma once
 #include "vec3.h"
+#include "hittable.h"
+
 class material {
 public:
     virtual bool scatter(
